@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from django.contrib.auth.models import User  # For the user field
 
-from app.models import Blog, BlogCategory, Companies, ContactUs, Gallery
+from app.models import Blog, BlogCategory, Companies, ContactUs, Distributers, Gallery
 
 class SliderSerializer(serializers.Serializer):
     id = serializers.IntegerField()
@@ -36,4 +36,9 @@ class BlogSerializer(serializers.ModelSerializer):
 class CompanySerialization(serializers.ModelSerializer):
     class Meta:
         model = Companies
+        fields = ['id', 'name', 'description', 'image']
+
+class DistributersSerialization(serializers.ModelSerializer):
+    class Meta:
+        model = Distributers
         fields = ['id', 'name', 'description', 'image']
