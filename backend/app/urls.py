@@ -8,4 +8,5 @@ urlpatterns = [
     path('api/gallery/', views.get_gallery_data, name='get_gallery_data'),
     path('api/blog/', views.BlogList.as_view(), name='blog-list'),
     path('api/blog/<int:pk>/', BlogDetail.as_view(), name='blog-detail'),
+    path('api/companies/', views.companyDetails.as_view(), name='companies-list'),
 ]

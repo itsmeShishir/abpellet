@@ -2,18 +2,6 @@ from django.contrib import admin
 from .models import Slider,ContactUs, Gallery, BlogCategory, Blog, Companies, Distributers, Associations, Homepage,AboutPage, ProductCategory, Product, WhyChoose, Ourmoto, CustomerReview, SiteSettings 
 from django.utils.html import mark_safe
 
-#singline the whole things in single page 
-# class WhyChoose_TabularInline(admin.TabularInline):
-#     model = WhyChoose
-
-# class Ourmoto_TabularInline(admin.TabularInline):
-#     model = Ourmoto
-
-# class CustomerReview_TabularInline(admin.TabularInline):
-#     model = CustomerReview
-
-# class all_admin(admin.ModelAdmin):
-#     inlines = (WhyChoose_TabularInline,Ourmoto_TabularInline, CustomerReview_TabularInline )
 
 # Register your models here.
 

@@ -38,6 +38,7 @@ class Blog(models.Model):
     description = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category_name = models.ForeignKey(BlogCategory, on_delete=models.CASCADE)
+    created_at = models.DateField(auto_now_add=True)
     
     def __str__(self):
         return self.title
@@ -76,6 +77,14 @@ class AboutPage(models.Model):
     whowearedescription = models.TextField(max_length=300)
     historytitle = models.TextField(max_length=100)
     historydescription   = models.TextField(max_length=300)
+    # class Meta:
+    #     permissions = [
+    #         ("can_update_restricted_model", "Can update restricted model"),
+    #     ]
+
+    # def save(self, *args, **kwargs):
+    #     if self.pk is not None:
+    #         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.messagetitle

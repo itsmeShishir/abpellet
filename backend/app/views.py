@@ -70,3 +70,6 @@ class BlogDetail(RetrieveAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
 
+class companyDetails(generics.ListAPIView):
+    queryset = Companies.objects.all()
+    serializer_class = CompanySerialization
