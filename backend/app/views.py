@@ -77,3 +77,33 @@ class companyDetails(generics.ListAPIView):
 class DistributersDetails(generics.ListAPIView):
     queryset = Distributers.objects.all()
     serializer_class = DistributersSerialization
+
+class WhyChooseUs(generics.ListAPIView):
+    queryset = WhyChoose.objects.all()
+    serializer_class = WhyChooseUsSerialization
+
+class Testimonial(generics.ListAPIView):
+    queryset = Testimonials.objects.all()
+    serializer_class = TestimonialsSerialization
+
+class OurPatner(generics.ListAPIView):
+    queryset = OurPatners.objects.all()
+    serializer_class = OurPatnersSerialization
+
+class OurMoto(generics.ListAPIView):
+    queryset = Ourmoto.objects.all()
+    serializer_class = OurmotosSerialization
+
+class Team(generics.ListAPIView):
+    queryset = Teams.objects.all()
+    serializer_class = TeamsSerialization
+
+class Association(generics.ListAPIView):
+    queryset = Associations.objects.all()
+    serializer_class = AssociationsSerialization
+
+class ProductCategory(generics.ListAPIView):
+    queryset = ProductCategory.objects.all()
+    serializer_class = ProductCategorySerializer
+
+

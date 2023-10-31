@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from django.contrib.auth.models import User  # For the user field
 
-from app.models import Blog, BlogCategory, Companies, ContactUs, Distributers, Gallery
+from app.models import Associations, Blog, BlogCategory, Companies, ContactUs, Distributers, Gallery, OurPatners, Ourmoto, ProductCategory, Teams, Testimonials, WhyChoose
 
 class SliderSerializer(serializers.Serializer):
     id = serializers.IntegerField()
@@ -42,3 +42,40 @@ class DistributersSerialization(serializers.ModelSerializer):
     class Meta:
         model = Distributers
         fields = ['id', 'name', 'description', 'image']
+        
+class WhyChooseUsSerialization(serializers.ModelSerializer):
+    class Meta:
+        model = WhyChoose
+        fields = ['id', 'title', 'description']
+
+class TestimonialsSerialization(serializers.ModelSerializer):
+    class Meta:
+        model = Testimonials
+        fields = ['id', 'name', 'title', 'description', 'image', 'postinCompany']
+
+class OurPatnersSerialization(serializers.ModelSerializer):
+    class Meta:
+        model = OurPatners
+        fields = ['patnerslink', 'image']
+
+class OurmotosSerialization(serializers.ModelSerializer):
+    class Meta:
+        model = Ourmoto
+        fields = ['title', 'description']
+
+class TeamsSerialization(serializers.ModelSerializer):
+    class Meta:
+        model = Teams
+        fields = ['name', 'company_position', 'short_description', 'twitter_link', 'image','facebook_link']
+        
+class AssociationsSerialization(serializers.ModelSerializer):
+    class Meta:
+        model = Associations
+        fields = ['link', 'image']
+
+class ProductCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductCategory
+        fields = '__all__'  
+
+     

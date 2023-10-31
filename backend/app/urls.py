@@ -10,4 +10,11 @@ urlpatterns = [
     path('api/blog/<int:pk>/', BlogDetail.as_view(), name='blog-detail'),
     path('api/companies/', views.companyDetails.as_view(), name='companies-list'),
     path('api/distributers/', views.DistributersDetails.as_view(), name='distributers-list'),
+    path('api/whychooseus/', views.WhyChooseUs.as_view(), name='WhyChooseUs-list'),
+    path('api/testimonial/', views.Testimonial.as_view(), name='testimonial-list'),
+    path('api/ourpatners/', views.OurPatner.as_view(), name='ourpatners-list'),
+    path('api/ourmoto/', views.OurMoto.as_view(), name='ourmoto-list'),
+    path('api/teams/', views.Team.as_view(), name='teams-list'),
+    path('api/associations/', views.Association.as_view(), name='association-list'),
+    path('api/productcategory/', views.ProductCategory.as_view(), name='productcategory-list'),
 ]

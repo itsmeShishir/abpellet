@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User  # For the user field
 
 # Create your models here.
@@ -66,6 +67,17 @@ class Associations(models.Model):
     def __str__(self):
         return self.link
 
+class Teams(models.Model):
+    name = models.CharField(max_length=100)
+    company_position = models.CharField(max_length=100)
+    short_description = models.TextField(blank=True)
+    twitter_link = models.CharField(max_length=100)
+    facebook_link = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='associations/')
+
+    def __str__(self):
+        return self.name
+
 class AboutPage(models.Model):
     messagetitle = models.CharField(max_length=100)
     messagedescription = models.TextField(max_length=250)
@@ -108,7 +120,7 @@ class Product(models.Model):
     def __str__(self):
         return self.title
     
-class Homepage(models.Model):
+class OurPatners(models.Model):
     patnerslink = models.CharField(max_length=100)
     image = models.ImageField(upload_to='associations/')
 
@@ -122,6 +134,13 @@ class WhyChoose(models.Model):
     def __str__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        # Check if there are already four items in the database
+        if WhyChoose.objects.count() >= 4:
+            raise ValidationError("You cannot create more than 4 items for WhyChoose.")
+
+        super(WhyChoose, self).save(*args, **kwargs)
+
 class Ourmoto(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
@@ -129,14 +148,6 @@ class Ourmoto(models.Model):
     def __str__(self):
         return self.title
 
-class CustomerReview(models.Model):
-    name: models.CharField(max_length=100)
-    description: models.TextField(max_length=300)
-    image = models.ImageField(upload_to="review/")
-    company_post: models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
 
 class SiteSettings(models.Model):
     name = models.CharField(max_length=100)
@@ -150,6 +161,16 @@ class SiteSettings(models.Model):
     twitter = models.CharField(max_length=100)
     instagram = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Testimonials(models.Model):
+    name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="testimonials/images/")
+    title= models.CharField(max_length=100)
+    description = models.CharField(max_length=300)
+    postinCompany = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name

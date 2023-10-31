@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Slider,ContactUs, Gallery, BlogCategory, Blog, Companies, Distributers, Associations, Homepage,AboutPage, ProductCategory, Product, WhyChoose, Ourmoto, CustomerReview, SiteSettings 
+from .models import OurPatners, Slider,ContactUs, Gallery, BlogCategory, Blog, Companies, Distributers, Associations,AboutPage, ProductCategory, Product, Teams, Testimonials, WhyChoose, Ourmoto, SiteSettings 
 from django.utils.html import mark_safe
 
 
@@ -45,11 +45,12 @@ admin.site.register(Companies)
 admin.site.register(Distributers)
 admin.site.register(Associations)
 # admin.site.register(Homepage, all_admin)
-admin.site.register(Homepage)
+admin.site.register(OurPatners)
 admin.site.register(AboutPage)
 admin.site.register(ProductCategory)
 admin.site.register(Product)
+admin.site.register(Teams)
 admin.site.register(WhyChoose)
 admin.site.register(Ourmoto)
-admin.site.register(CustomerReview)
 admin.site.register(SiteSettings)
+admin.site.register(Testimonials)
