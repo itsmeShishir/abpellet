@@ -45,7 +45,7 @@ class Blog(models.Model):
 
 class Companies(models.Model):
     name = models.CharField(max_length=100)
-    description = models.CharField(max_length=250)
+    description = models.CharField(max_length=1500)
     image = models.ImageField(upload_to="companies/")
 
     def __str__(self):
