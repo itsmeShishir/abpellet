@@ -102,8 +102,16 @@ class Association(generics.ListAPIView):
     queryset = Associations.objects.all()
     serializer_class = AssociationsSerialization
 
-class ProductCategory(generics.ListAPIView):
+class ProductCategorys(generics.ListAPIView):
     queryset = ProductCategory.objects.all()
     serializer_class = ProductCategorySerializer
+
+class CategoryProduct(RetrieveAPIView):
+    queryset = ProductCategory.objects.all()
+    serializer_class = ProductCategorySerializer
+
+class AboutPages(RetrieveAPIView):
+    queryset = AboutPage.objects.all()
+    serializer_class = AboutPageSerializer
 
 

@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from django.contrib.auth.models import User  # For the user field
 
-from app.models import Associations, Blog, BlogCategory, Companies, ContactUs, Distributers, Gallery, OurPatners, Ourmoto, ProductCategory, Teams, Testimonials, WhyChoose
+from app.models import AboutPage, Associations, Blog, BlogCategory, Companies, ContactUs, Distributers, Gallery, OurPatners, Ourmoto, ProductCategory, SiteSettings, Teams, Testimonials, WhyChoose
 
 class SliderSerializer(serializers.Serializer):
     id = serializers.IntegerField()
@@ -78,4 +78,12 @@ class ProductCategorySerializer(serializers.ModelSerializer):
         model = ProductCategory
         fields = '__all__'  
 
-     
+class AboutPageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AboutPage
+        fields = '__all__'
+
+class SiteSettingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SiteSettings
+        fields = '__all__'     

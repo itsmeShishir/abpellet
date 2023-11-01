@@ -89,17 +89,15 @@ class AboutPage(models.Model):
     whowearedescription = models.TextField(max_length=300)
     historytitle = models.TextField(max_length=100)
     historydescription   = models.TextField(max_length=300)
-    # class Meta:
-    #     permissions = [
-    #         ("can_update_restricted_model", "Can update restricted model"),
-    #     ]
-
-    # def save(self, *args, **kwargs):
-    #     if self.pk is not None:
-    #         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.messagetitle
+
+    def save(self, *args, **kwargs):
+        if self.pk is None and AboutPage.objects.count() >= 1:
+            raise ValidationError("You cannot create more than 1 items for AboutPage.")
+
+        super(AboutPage, self).save(*args, **kwargs)
 
 class ProductCategory(models.Model):
     category_name = models.CharField(max_length=100)
@@ -135,8 +133,7 @@ class WhyChoose(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        # Check if there are already four items in the database
-        if WhyChoose.objects.count() >= 4:
+        if self.pk is None and WhyChoose.objects.count() >= 4:
             raise ValidationError("You cannot create more than 4 items for WhyChoose.")
 
         super(WhyChoose, self).save(*args, **kwargs)
@@ -164,6 +161,12 @@ class SiteSettings(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        if self.pk is None and SiteSettings.objects.count() >= 1:
+            raise ValidationError("You cannot create more than 1 items for SiteSettings.")
+
+        super(SiteSettings, self).save(*args, **kwargs)
 
 class Testimonials(models.Model):
     name = models.CharField(max_length=100)

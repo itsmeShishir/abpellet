@@ -16,5 +16,7 @@ urlpatterns = [
     path('api/ourmoto/', views.OurMoto.as_view(), name='ourmoto-list'),
     path('api/teams/', views.Team.as_view(), name='teams-list'),
     path('api/associations/', views.Association.as_view(), name='association-list'),
-    path('api/productcategory/', views.ProductCategory.as_view(), name='productcategory-list'),
+    path('api/productcategory/', views.ProductCategorys.as_view(), name='productcategory-list'),
+    path('api/product/<int:pk>', views.CategoryProduct.as_view(), name='product-list'),
+    path('api/aboutpage/<int:pk>', views.AboutPages.as_view(), name='aboutpage-list'),
 ]
