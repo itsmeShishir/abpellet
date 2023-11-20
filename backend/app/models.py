@@ -104,7 +104,7 @@ class ProductCategory(models.Model):
     category_description = models.TextField(max_length=300)
     image = models.ImageField(upload_to='productcategory/')
     internalimage = models.ImageField(upload_to='productcategory/')
-
+    
     def __str__(self):
         return self.category_name
 
@@ -112,7 +112,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='Product_images/')
     title = models.CharField(max_length=200)
     description = models.TextField(max_length=500)
-    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name='products')
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -124,8 +124,9 @@ class OurPatners(models.Model):
 
     def __str__(self):
         return self.patnerslink
-
+#this is whoweare 
 class WhyChoose(models.Model):
+    icon = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
 
@@ -137,6 +138,7 @@ class WhyChoose(models.Model):
             raise ValidationError("You cannot create more than 4 items for WhyChoose.")
 
         super(WhyChoose, self).save(*args, **kwargs)
+#this is why choose us
 
 class Ourmoto(models.Model):
     title = models.CharField(max_length=100)

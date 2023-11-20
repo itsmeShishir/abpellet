@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from django.contrib.auth.models import User  # For the user field
 
-from app.models import AboutPage, Associations, Blog, BlogCategory, Companies, ContactUs, Distributers, Gallery, OurPatners, Ourmoto, ProductCategory, SiteSettings, Teams, Testimonials, WhyChoose
+from app.models import AboutPage, Associations, Blog, BlogCategory, Companies, ContactUs, Distributers, Gallery, OurPatners, Ourmoto, Product, ProductCategory, SiteSettings, Teams, Testimonials, WhyChoose
 
 class SliderSerializer(serializers.Serializer):
     id = serializers.IntegerField()
@@ -46,7 +46,7 @@ class DistributersSerialization(serializers.ModelSerializer):
 class WhyChooseUsSerialization(serializers.ModelSerializer):
     class Meta:
         model = WhyChoose
-        fields = ['id', 'title', 'description']
+        fields = '__all__'
 
 class TestimonialsSerialization(serializers.ModelSerializer):
     class Meta:
@@ -72,12 +72,19 @@ class AssociationsSerialization(serializers.ModelSerializer):
     class Meta:
         model = Associations
         fields = ['link', 'image']
+        
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
 
 class ProductCategorySerializer(serializers.ModelSerializer):
+    products = ProductSerializer(many=True, read_only=True)
+
     class Meta:
         model = ProductCategory
-        fields = '__all__'  
-
+        fields = '__all__'
+        
 class AboutPageSerializer(serializers.ModelSerializer):
     class Meta:
         model = AboutPage
@@ -87,3 +94,11 @@ class SiteSettingSerializer(serializers.ModelSerializer):
     class Meta:
         model = SiteSettings
         fields = '__all__'     
+
+class ProductDetailSerializer(serializers.ModelSerializer):
+    category_names = ProductCategorySerializer(source='category_name', read_only=True)
+
+    class Meta:
+        model = Product
+        fields = '__all__'
+

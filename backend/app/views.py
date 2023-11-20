@@ -102,16 +102,41 @@ class Association(generics.ListAPIView):
     queryset = Associations.objects.all()
     serializer_class = AssociationsSerialization
 
-class ProductCategorys(generics.ListAPIView):
+class ProductListByCategory(generics.ListAPIView):
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        category_id = self.kwargs['category_id']
+        return Product.objects.filter(category__id=category_id)
+
+
+class ProductCategoryList(generics.ListAPIView):
     queryset = ProductCategory.objects.all()
     serializer_class = ProductCategorySerializer
 
-class CategoryProduct(RetrieveAPIView):
+class CategoryDetail(generics.RetrieveAPIView):
     queryset = ProductCategory.objects.all()
     serializer_class = ProductCategorySerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        products_serializer = ProductSerializer(instance.products.all(), many=True)
+        response_data = {
+            'category': serializer.data,
+        }
+        return Response(response_data)
 
 class AboutPages(RetrieveAPIView):
     queryset = AboutPage.objects.all()
     serializer_class = AboutPageSerializer
+
+class SiteSetting(RetrieveAPIView):
+    queryset = SiteSettings.objects.all()
+    serializer_class = SiteSettingSerializer
+
+class ProductDetail(RetrieveAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductDetailSerializer
 
 
