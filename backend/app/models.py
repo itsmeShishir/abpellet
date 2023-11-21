@@ -159,7 +159,10 @@ class SiteSettings(models.Model):
     fb = models.CharField(max_length=100)
     twitter = models.CharField(max_length=100)
     instagram = models.CharField(max_length=100)
+    linkedin = models.CharField(max_length=255, default='')
     location = models.CharField(max_length=100)
+    postbox = models.CharField(max_length=255, default='')
+    place = models.CharField(max_length=255, default='')
 
     def __str__(self):
         return self.name
